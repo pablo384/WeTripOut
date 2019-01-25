@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "308378996636",
+    "firebase_url": "https://we-trip-out.firebaseio.com",
+    "project_id": "we-trip-out",
+    "storage_bucket": "we-trip-out.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308378996636:android:62a44d716bb089ac",
+        "android_client_info": {
+          "package_name": "com.pablo384.wetripout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308378996636-3h4uu0h71vufrgenm99f5i1gpo8040t8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8oaSlj9dlnoUscnEq5r6_Kq7NOEbe8Q4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

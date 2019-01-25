@@ -87,7 +87,9 @@ class _LoginFormState extends State<LoginForm> {
                         },
                         child: Text('Inicia sesión', style: TextStyle(color: Colors.white),),
                       ),
-                      Text('¿No tienes una cuenta? Registrate aqui.'),
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).pushNamed('/sig_in'),
+                          child: Text('¿No tienes una cuenta? Registrate aqui.')),
                       Text('Recuperar clave'),
                     ],
                   )),

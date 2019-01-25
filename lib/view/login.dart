@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:we_trip_out/view/loginForm.dart';
 
 class Login extends StatefulWidget {
@@ -11,6 +12,10 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
 //      resizeToAvoidBottomPadding: false,
       body: Container(
