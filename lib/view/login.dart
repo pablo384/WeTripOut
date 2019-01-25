@@ -28,7 +28,11 @@ class _LoginState extends State<Login> {
           ],
         ),
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/edificio01.png"))
+          image: DecorationImage(
+              image: AssetImage("assets/edificios01.png"),
+            fit: BoxFit.contain,
+            alignment: Alignment.bottomCenter
+          )
         ),
       ),
     );

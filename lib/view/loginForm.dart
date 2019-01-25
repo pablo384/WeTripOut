@@ -24,8 +24,8 @@ class _LoginFormState extends State<LoginForm> {
                   child: Column(
                     children: <Widget>[
                       Text(
-                        'Iniciar Sesion',
-                        style: Theme.of(context).textTheme.display1,
+                        '¡Bienvenido!',
+                        style: Theme.of(context).textTheme.headline,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -48,6 +48,7 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 8.0,),
                       GestureDetector(
                         onTap: () {
                           _scrollController.animateTo(
@@ -56,7 +57,7 @@ class _LoginFormState extends State<LoginForm> {
                             duration: const Duration(milliseconds: 300),
                           );
                         },
-                        
+
                         child: TextFormField(
                           obscureText: true,
                           validator: (value) {
@@ -84,8 +85,10 @@ class _LoginFormState extends State<LoginForm> {
                                 SnackBar(content: Text('Processing Data')));
                           }
                         },
-                        child: Text('Iniciar Sesion', style: TextStyle(color: Colors.white),),
-                      )
+                        child: Text('Inicia sesión', style: TextStyle(color: Colors.white),),
+                      ),
+                      Text('¿No tienes una cuenta? Registrate aqui.'),
+                      Text('Recuperar clave'),
                     ],
                   )),
             ),
