@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_trip_out/view/home/createTrip.dart';
 import 'package:we_trip_out/view/home/home.dart';
 
 class BottomNavigator extends StatefulWidget {
@@ -44,7 +45,7 @@ class _BottomNavigator extends State<BottomNavigator> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15.0),
                       bottomRight: Radius.circular(15.0))),
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).pushNamed(CreateTrip.routeName),
             )
           : null,
       bottomNavigationBar: BottomNavigationBar(
