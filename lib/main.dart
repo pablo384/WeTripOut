@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.lightBlue,
             accentColor: Colors.redAccent,
             brightness: brightness,
+            // textTheme: TextTheme(button: TextStyle(color: Colors.white))
           ),
       themedWidgetBuilder: (context, theme) {
         return MaterialApp(

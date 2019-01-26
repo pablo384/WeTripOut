@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_trip_out/view/home/tripCard.dart';
 class Home extends StatefulWidget {
 
   @override
@@ -12,15 +13,11 @@ class _Home extends State<Home> {
       padding: EdgeInsets.all(8.0),
       child: ListView(
         children: <Widget>[
-          Card(
-            child: Column(
-              children: <Widget>[
-                Image.network('https://i.imgur.com/psTAraX.jpg'),
-                Text('TITULO DE VIAJE'),
-                Text('12/21/2019 8:00AM'),
-              ],
-            ),
-          )
+          TripCard(),
+          TripCard(),
+          TripCard(),
+          TripCard(),
+          TripCard(),
         ],
       ),
     );
