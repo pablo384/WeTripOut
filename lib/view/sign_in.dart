@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_trip_out/view/components/tripButton.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SigIn extends StatefulWidget {
   static const String routeName = '/sig_in';
@@ -10,6 +11,23 @@ class SigIn extends StatefulWidget {
 class _SigIn extends State<SigIn> {
   final _formKey = GlobalKey<FormState>();
   var _company = false;
+  var _email = '';
+  var _password = '';
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<Null> registrarte() async{
+    var user = _auth.createUserWithEmailAndPassword(email: _email, password: _password)
+    .then(
+      (res) {
+        print('FIREBASE: ${res.uid} ${res.email} ${res.displayName}');
+      }
+    )
+    .catchError((err) {
+      print('FIREBASE: ERROR');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +83,9 @@ class _SigIn extends State<SigIn> {
                             if (value.isEmpty) {
                               return 'Favor ingresar usuario';
                             }
+                            setState(() {
+                              _email = value;
+                            });
                           },
                           decoration: InputDecoration(
                               border: OutlineInputBorder(),
@@ -79,6 +100,9 @@ class _SigIn extends State<SigIn> {
                             if (value.isEmpty) {
                               return 'Favor ingresar clave';
                             }
+                            setState(() {
+                              _password = value;
+                            });
                           },
                           decoration: InputDecoration(
                               border: OutlineInputBorder(),
@@ -91,8 +115,9 @@ class _SigIn extends State<SigIn> {
                           texto: 'Registrar',
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              Scaffold.of(context).showSnackBar(
-                                  SnackBar(content: Text('Processing Data')));
+//                              Scaffold.of(context).showSnackBar(
+//                                  SnackBar(content: Text('Processing Data')));
+                                  registrarte();
                             }
                           },
                         )

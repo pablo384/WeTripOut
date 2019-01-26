@@ -24,7 +24,10 @@ dependencies:
   google_places_picker: ^0.1.0
   intl: any
   rxdart: ^0.20.0
+  share: ^0.6.0
+  shared_preferences: any
   firebase_auth: ^0.8.0+1
+  cloud_firestore: ^0.9.0
   dynamic_theme:
     git:
       url: git://github.com/Norbert515/dynamic_theme.git
