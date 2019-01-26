@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:we_trip_out/view/home/createTrip.dart';
 import 'package:we_trip_out/view/home/home.dart';
+import 'package:we_trip_out/view/login.dart';
 
 class BottomNavigator extends StatefulWidget {
   static const String routeName = '/home';
@@ -10,6 +12,7 @@ class BottomNavigator extends StatefulWidget {
 
 class _BottomNavigator extends State<BottomNavigator> {
   int _currentIndex = 0;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final List<Widget> _children = [
     Home(),
     Text('02'),
@@ -23,13 +26,18 @@ class _BottomNavigator extends State<BottomNavigator> {
     });
   }
 
+  void logut() {
+    _auth.signOut();
+    Navigator.of(context).pushNamed(Login.routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // centerTitle: true,
-        // title: Text('My Flutter App', style: TextStyle(color: Colors.white),
-        // ),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.exit_to_app), onPressed: logut,)
+        ],
         automaticallyImplyLeading: false,
       ),
       body: _children[_currentIndex],

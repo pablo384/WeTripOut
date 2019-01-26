@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:we_trip_out/view/components/tripButton.dart';
 import 'package:we_trip_out/view/home/bottomNavigator.dart';
@@ -10,6 +11,21 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   ScrollController _scrollController = new ScrollController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  var _email = '';
+  var _password = '';
+
+  login() {
+    _auth
+        .signInWithEmailAndPassword(email: _email, password: _password)
+        .then((user) {
+      Navigator.of(context).pushNamed(BottomNavigator.routeName);
+    }).catchError((err) {
+      Scaffold.of(context)
+          .showSnackBar(SnackBar(content: Text('Error')));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Card(
@@ -43,6 +59,10 @@ class _LoginFormState extends State<LoginForm> {
                             if (value.isEmpty) {
                               return 'Favor ingresar usuario';
                             }
+
+                            setState(() {
+                              _email = value;
+                            });
                           },
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -51,7 +71,9 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 8.0,),
+                      SizedBox(
+                        height: 8.0,
+                      ),
                       GestureDetector(
                         onTap: () {
                           _scrollController.animateTo(
@@ -60,35 +82,39 @@ class _LoginFormState extends State<LoginForm> {
                             duration: const Duration(milliseconds: 300),
                           );
                         },
-
                         child: TextFormField(
                           obscureText: true,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Favor ingresar clave';
                             }
+                            setState(() {
+                              _password = value;
+                            });
                           },
                           decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Clave',
-                              labelText: 'Clave',
+                            border: OutlineInputBorder(),
+                            hintText: 'Clave',
+                            labelText: 'Clave',
                           ),
                         ),
                       ),
                       TripButton(
                         texto: 'Inicia sesión',
                         onPressed: () {
-//                          if (_formKey.currentState.validate()) {
-//                            Scaffold.of(context).showSnackBar(
-//                                SnackBar(content: Text('Processing Data')));
-//                          }
-                          Navigator.of(context).pushNamed(BottomNavigator.routeName);
+                          if (_formKey.currentState.validate()) {
+                            Scaffold.of(context).showSnackBar(
+                                SnackBar(content: Text('Processing Data')));
+                                login();
+                          }
+                          // Navigator.of(context).pushNamed(BottomNavigator.routeName);
                         },
-
                       ),
                       GestureDetector(
-                        onTap: () => Navigator.of(context).pushNamed('/sig_in'),
-                          child: Text('¿No tienes una cuenta? Registrate aqui.')),
+                          onTap: () =>
+                              Navigator.of(context).pushNamed('/sig_in'),
+                          child:
+                              Text('¿No tienes una cuenta? Registrate aqui.')),
                       Text('Recuperar clave'),
                     ],
                   )),
@@ -96,9 +122,9 @@ class _LoginFormState extends State<LoginForm> {
             new Container(
 //              width: MediaQuery.of(context).size.width * 0.3,
                 child: Image.asset(
-                  "assets/logotripout.png",
-                  height: MediaQuery.of(context).size.height * 0.2,
-                )),
+              "assets/logotripout.png",
+              height: MediaQuery.of(context).size.height * 0.2,
+            )),
           ],
         ),
       ),
