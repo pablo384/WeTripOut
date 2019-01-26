@@ -44,7 +44,8 @@ class _LoginFormState extends State<LoginForm> {
                           },
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            hintText: 'Usuario/Email'
+                            hintText: 'Email',
+                            labelText: 'Email',
                           ),
                         ),
                       ),
@@ -67,7 +68,8 @@ class _LoginFormState extends State<LoginForm> {
                           },
                           decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              hintText: 'Clave'
+                              hintText: 'Clave',
+                              labelText: 'Clave',
                           ),
                         ),
                       ),
