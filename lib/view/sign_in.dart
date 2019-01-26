@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SigIn extends StatefulWidget {
+  static const String routeName = '/sig_in';
   @override
   State createState() => _SigIn();
 }

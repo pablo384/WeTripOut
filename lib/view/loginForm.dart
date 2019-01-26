@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_trip_out/view/home/bottomNavigator.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -82,10 +83,12 @@ class _LoginFormState extends State<LoginForm> {
                           )
                         ),
                         onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            Scaffold.of(context).showSnackBar(
-                                SnackBar(content: Text('Processing Data')));
-                          }
+//                          if (_formKey.currentState.validate()) {
+//                            Scaffold.of(context).showSnackBar(
+//                                SnackBar(content: Text('Processing Data')));
+//                          }
+
+                          Navigator.of(context).pushNamed(BottomNavigator.routeName);
                         },
                         child: Text('Inicia sesión', style: TextStyle(color: Colors.white),),
                       ),

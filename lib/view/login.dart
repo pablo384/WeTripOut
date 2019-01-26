@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:we_trip_out/view/loginForm.dart';
 
 class Login extends StatefulWidget {
+  static const String routeName = '/';
   @override
   State createState() => _LoginState();
 }

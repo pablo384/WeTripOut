@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_trip_out/view/home/bottomNavigator.dart';
 import 'package:we_trip_out/view/login.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:we_trip_out/view/sign_in.dart';
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'We Trip Out',
           theme: theme,
-          initialRoute: '/',
+          initialRoute: Login.routeName,
           routes: {
-            '/': (context) => Login(),
-            '/sig_in': (context) => SigIn()
+            Login.routeName: (context) => Login(),
+            SigIn.routeName: (context) => SigIn(),
+            BottomNavigator.routeName: (context) => BottomNavigator(),
           },
         );
       },
