@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:we_trip_out/view/components/dateTimePicker.dart';
+import 'package:we_trip_out/view/components/mapsLocationPicker.dart';
 import 'package:we_trip_out/view/components/tripButton.dart';
 
 class CreateTrip extends StatefulWidget {
@@ -10,19 +10,18 @@ class CreateTrip extends StatefulWidget {
 }
 
 class _CreateTrip extends State<CreateTrip> {
-  GoogleMapController mapController;
   final _formKey = GlobalKey<FormState>();
 
   DateTime _fromDate = DateTime.now();
   TimeOfDay _fromTime = const TimeOfDay(hour: 7, minute: 28);
   DateTime _toDate = DateTime.now();
   TimeOfDay _toTime = const TimeOfDay(hour: 7, minute: 28);
+  Map<String, double> _location = {};
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -37,7 +36,9 @@ class _CreateTrip extends State<CreateTrip> {
           child: ListView(
             children: <Widget>[
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  showMOdal();
+                },
                 textColor: Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -48,6 +49,7 @@ class _CreateTrip extends State<CreateTrip> {
                 ),
                 color: Theme.of(context).accentColor,
               ),
+              Text('Ubicacion: $_location'),
               SizedBox(
                 height: 8.0,
               ),
@@ -136,9 +138,16 @@ class _CreateTrip extends State<CreateTrip> {
     );
   }
 
-  void _onMapCreated(GoogleMapController controller) {
-    setState(() {
-      mapController = controller;
-    });
+  void showMOdal() {
+    Navigator.push(
+        context,
+        MaterialPageRoute<dynamic>(
+          builder: (BuildContext context) => MapsLocationPicker(location: (loc) {
+            setState(() {
+              _location = loc;
+            });
+          },),
+          fullscreenDialog: true,
+        ));
   }
 }
