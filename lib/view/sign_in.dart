@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_trip_out/view/components/tripButton.dart';
 
 class SigIn extends StatefulWidget {
   static const String routeName = '/sig_in';
@@ -86,22 +87,15 @@ class _SigIn extends State<SigIn> {
                           ),
                         ),
                         SizedBox(height: 8.0,),
-                        RaisedButton(
-                          color: Colors.lightBlue,
-                          shape: BeveledRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15.0),
-                                  bottomRight: Radius.circular(15.0)
-                              )
-                          ),
+                        TripButton(
+                          texto: 'Registrar',
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               Scaffold.of(context).showSnackBar(
                                   SnackBar(content: Text('Processing Data')));
                             }
                           },
-                          child: Text('Registrar', style: TextStyle(color: Colors.white),),
-                        ),
+                        )
                       ],
                     ),
                   )),

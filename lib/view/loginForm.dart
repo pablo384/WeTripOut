@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_trip_out/view/components/tripButton.dart';
 import 'package:we_trip_out/view/home/bottomNavigator.dart';
 
 class LoginForm extends StatefulWidget {
@@ -74,23 +75,16 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                         ),
                       ),
-                      RaisedButton(
-                        color: Colors.lightBlue,
-                        shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15.0),
-                                bottomRight: Radius.circular(15.0)
-                          )
-                        ),
+                      TripButton(
+                        texto: 'Inicia sesión',
                         onPressed: () {
 //                          if (_formKey.currentState.validate()) {
 //                            Scaffold.of(context).showSnackBar(
 //                                SnackBar(content: Text('Processing Data')));
 //                          }
-
                           Navigator.of(context).pushNamed(BottomNavigator.routeName);
                         },
-                        child: Text('Inicia sesión', style: TextStyle(color: Colors.white),),
+
                       ),
                       GestureDetector(
                         onTap: () => Navigator.of(context).pushNamed('/sig_in'),

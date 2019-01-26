@@ -16,6 +16,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="We Trip Out"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyA8oaSlj9dlnoUscnEq5r6_Kq7NOEbe8Q4"
+        />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

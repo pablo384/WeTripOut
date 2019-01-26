@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class TripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
