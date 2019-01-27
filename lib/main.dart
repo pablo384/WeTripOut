@@ -5,6 +5,7 @@ import 'package:we_trip_out/view/login.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:we_trip_out/view/sign_in.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() => runApp(MyApp());
@@ -45,25 +46,42 @@ class MySplash extends StatefulWidget {
 
 class _MySplashState extends State<MySplash> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  Widget next() {
-    return _auth.currentUser() != null ? BottomNavigator() : Login();
+
+  var user;
+  @override
+  void initState() {
+    super.initState();
+    getUser();
   }
+
+  Future<Null> getUser() async {
+    var usr = await _auth.currentUser();
+    setState(() {
+      user = usr;
+    });
+    return null;
+  }
+
+  Widget next() {
+    print('USER');
+    print(user);
+    return user != null ? BottomNavigator() : Login();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new SplashScreen(
-      seconds: 14,
-      navigateAfterSeconds: next(),
-      title: new Text('Welcome In SplashScreen',
-      style: new TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 20.0
-      ),),
-      image: new Image.network('https://i.imgur.com/TyCSG9A.png'),
-      backgroundColor: Colors.white,
-      styleTextUnderTheLoader: new TextStyle(),
-      photoSize: 100.0,
-      onClick: ()=>print("Flutter Egypt"),
-      loaderColor: Colors.red
-    );
+        seconds: 3,
+        navigateAfterSeconds: next(),
+        title: new Text(
+          'Welcome In SplashScreen',
+          style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+        ),
+        image: Image.asset("assets/edificios01.png"),
+        backgroundColor: Colors.white,
+        styleTextUnderTheLoader: new TextStyle(),
+        photoSize: 100.0,
+        onClick: () => print("Flutter Egypt"),
+        loaderColor: Colors.red);
   }
 }

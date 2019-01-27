@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:we_trip_out/view/account/account.dart';
 import 'package:we_trip_out/view/home/createTrip.dart';
 import 'package:we_trip_out/view/home/home.dart';
 import 'package:we_trip_out/view/login.dart';
+import 'package:we_trip_out/view/profile/profile.dart';
 
 class BottomNavigator extends StatefulWidget {
   static const String routeName = '/home';
@@ -16,8 +18,8 @@ class _BottomNavigator extends State<BottomNavigator> {
   final List<Widget> _children = [
     Home(),
     Text('02'),
-    Text('03'),
-    Text('04     ')
+    Account(),
+    Profile()
   ];
 
   void onTabTapped(int index) {
@@ -26,8 +28,8 @@ class _BottomNavigator extends State<BottomNavigator> {
     });
   }
 
-  void logut() {
-    _auth.signOut();
+  void logut() async {
+    await _auth.signOut();
     Navigator.of(context).pushNamed(Login.routeName);
   }
 

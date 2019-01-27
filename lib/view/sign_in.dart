@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:we_trip_out/view/components/tripButton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
 class SigIn extends StatefulWidget {
   static const String routeName = '/sig_in';
@@ -19,12 +20,14 @@ class _SigIn extends State<SigIn> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<Null> registrarte() async{
-    var user = _auth.createUserWithEmailAndPassword(email: _email, password: _password)
+    _auth.createUserWithEmailAndPassword(email: _email, password: _password)
     .then(
       (res) {
         final Firestore _fbStore = Firestore.instance;
         _fbStore.collection('user').document()
         .setData({'name': _name, 'uid': res.uid, 'company': _company, 'email': _email});
+        _fbStore.collection('account').document()
+        .setData({'owner': res.uid, 'name': 'Cuenta por defecto', 'transactions' : []});
         print('FIREBASE: ${res.uid} ${res.email} ${res.displayName}');
       }
     )
