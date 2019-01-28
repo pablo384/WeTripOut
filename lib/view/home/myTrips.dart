@@ -1,15 +1,16 @@
+import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:async';
 
-class Account extends StatefulWidget {
+class MyTrip extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _Account();
+  State<StatefulWidget> createState() => _MyTrip();
+  
 }
+class _MyTrip extends State<MyTrip> {
 
-class _Account extends State<Account> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseAuth _auth = FirebaseAuth.instance;
   List<Widget> _miLista = [];
 
   @override
@@ -21,9 +22,8 @@ class _Account extends State<Account> {
   Future<Null> getData() async {
     FirebaseUser usr = await _auth.currentUser();
     Firestore db = Firestore.instance;
-
     db
-        .collection('account')
+        .collection('events')
         .where('owner', isEqualTo: usr.uid)
         .snapshots()
         .take(1)
@@ -42,27 +42,33 @@ class _Account extends State<Account> {
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Column(
             children: <Widget>[
-              Icon(Icons.monetization_on, color: Colors.green, size: 55.0,)
+              Image.network(
+                'https://amp.thisisinsider.com/images/5bfec49248eb12058423acf7-750-562.jpg',
+                fit: BoxFit.cover,
+                width: 100.0,
+              ),
             ],
           ),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text('${doc.data['name']}', style: TextStyle(fontWeight: FontWeight.bold),),
-              Text( "\$" + '${doc.data['transactions'].length}')
+              Text('${doc.data['title']}', textAlign: TextAlign.center,),
+              Text('${doc.data['type']}', textAlign: TextAlign.center,),
+              Text('Presupuesto p/p: RD\$${doc.data['budget']}', textAlign: TextAlign.center,),
             ],
           ),
         ],
       ),
     ),
   );
-
   @override
   Widget build(BuildContext context) {
     if (_miLista.length == 0) return LinearProgressIndicator();
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListView(
@@ -70,4 +76,5 @@ class _Account extends State<Account> {
       ),
     );
   }
+  
 }

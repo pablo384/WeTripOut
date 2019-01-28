@@ -284,13 +284,13 @@ class _CreateTrip extends State<CreateTrip> {
     // var tem = ;
     setState(() {
       _faltan = fin.difference(inicio).inDays;
-      _faltanMeses = ((_faltan / _rangeDays).toInt());
+      _faltanMeses = (_faltan ~/ _rangeDays);
       _ahorrar = (_budget / _faltanMeses).toStringAsFixed(2);
     });
     print('DIFERNCIA:');
     // print(fin.difference(inicio).inDays.toString());
     print('FALTAN:');
-    print('${_faltan} meses');
+    print('$_faltan meses');
 
     print('PRESUPUESTP: $_budget');
     print('A _ahorrar: $_ahorrar');

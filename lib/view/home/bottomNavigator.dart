@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:we_trip_out/view/account/account.dart';
 import 'package:we_trip_out/view/home/createTrip.dart';
 import 'package:we_trip_out/view/home/home.dart';
+import 'package:we_trip_out/view/home/myTrips.dart';
 import 'package:we_trip_out/view/login.dart';
 import 'package:we_trip_out/view/profile/profile.dart';
 
@@ -17,7 +18,7 @@ class _BottomNavigator extends State<BottomNavigator> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final List<Widget> _children = [
     Home(),
-    Text('02'),
+    MyTrip(),
     Account(),
     Profile()
   ];

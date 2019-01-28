@@ -7,6 +7,7 @@ import 'package:we_trip_out/view/sign_in.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:we_trip_out/view/tripViewer.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
             SigIn.routeName: (context) => SigIn(),
             BottomNavigator.routeName: (context) => BottomNavigator(),
             CreateTrip.routeName: (context) => CreateTrip(),
+            TripViewer.routeName: (context) => TripViewer(),
           },
         );
       },
@@ -74,10 +76,10 @@ class _MySplashState extends State<MySplash> {
         seconds: 3,
         navigateAfterSeconds: next(),
         title: new Text(
-          'Welcome In SplashScreen',
+          '¡Bienvenido a We Trip Out!',
           style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
         ),
-        image: Image.asset("assets/edificios01.png"),
+        image: Image.asset("assets/logotripout.png"),
         backgroundColor: Colors.white,
         styleTextUnderTheLoader: new TextStyle(),
         photoSize: 100.0,
